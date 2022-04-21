@@ -31,13 +31,13 @@ purge() {
 case "$1" in
 up)
   start
-  doDockerComposeUp "active"
+  doDockerComposeUp "base"
   ;;
 down)
-  doDockerCompose "down" "active"
+  doDockerCompose "down" "base"
   ;;
 purge)
-  doDockerCompose "down" "active"
+  doDockerCompose "down" "base"
   purge
   ;;
 *)

@@ -1,18 +1,17 @@
 version: '3.7'
 services:
-  mariadb:
-    image: mariadb:10.7.3
-    container_name: mariadb
-    volumes:
-      - ./mariainit:/docker-entrypoint-initdb.d
-      - alfresco-migrator-db-volume:/var/lib/mysql
+  postgres:
+    image: postgres:13.3
+    container_name: postgres
     environment:
-      - MYSQL_ROOT_PASSWORD=alfresco
-      - MYSQL_USER=alfresco
-      - MYSQL_PASSWORD=alfresco
-    command: [mysqld, --character-set-server=utf8, --collation-server=utf8_bin, --wait_timeout=28800]
+      - POSTGRES_PASSWORD=alfresco
+      - POSTGRES_USER=alfresco
+      - POSTGRES_DB=alfresco
+    command: postgres -c max_connections=300 -c log_min_messages=LOG
     ports:
-      - "3306:3306"
+      - "5432:5432"
+    volumes:
+      - alfresco-migrator-db-volume:/var/lib/postgresql/data
     networks:
       - default
 
