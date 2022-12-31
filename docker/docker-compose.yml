@@ -32,8 +32,6 @@ services:
     volumes:
       - alfresco-migrator-acs-volume:/usr/local/tomcat/alf_data
       - alfresco-migrator-acs-log-volume:/usr/local/tomcat/logs
-    depends_on:
-      - alfresco-migrator-postgres
     networks:
       - default
 
